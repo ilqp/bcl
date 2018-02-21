@@ -1,0 +1,113 @@
+users-MacBook-Pro:bcl user$ ./remote_run.sh
+==========================================================
+Remove the old code (192.168.118.131:/home/user/workspace/bcl) from remote
+==========================================================
+==========================================================
+SCP /Users/user/workspace/bcl 192.168.118.131:/home/user/workspace/bcl
+==========================================================
+==========================================================
+Build the remote code
+==========================================================
+/home/user/workspace/bcl
+gcc -c -Wall -w -O3 -s bfc.c
+gcc -c -Wall -W -ansi -pedantic -O3 rle.c
+gcc -c -Wall -W -ansi -pedantic -O3 shannonfano.c
+gcc -c -Wall -W -ansi -pedantic -O3 huffman.c
+gcc -c -Wall -W -ansi -pedantic -O3 rice.c
+gcc -c -Wall -W -ansi -pedantic -O3 lz.c
+ar -rcs libbcl.a rle.o shannonfano.o huffman.o rice.o lz.o
+gcc -s bfc.o libbcl.a -o bfc
+====================================================
+Make completed
+====================================================
+/home/user/workspace/bcl/src
+-rwxrwxr-x 1 user user  27K Feb 21 15:12 bfc
+-rw-rw-r-- 1 user user  11K Feb 21 15:12 bfc.o
+-rw-rw-r-- 1 user user 5.9K Feb 21 15:12 huffman.o
+-rw-rw-r-- 1 user user  24K Feb 21 15:12 libbcl.a
+-rw-rw-r-- 1 user user 4.5K Feb 21 15:12 lz.o
+-rw-rw-r-- 1 user user 5.8K Feb 21 15:12 rice.o
+-rw-rw-r-- 1 user user 2.5K Feb 21 15:12 rle.o
+-rw-rw-r-- 1 user user 4.3K Feb 21 15:12 shannonfano.o
+====================================================
+Test txt compression
+====================================================
+LZ77 Output file: 4092 bytes (48.3%)
+  adding: test/test_txt/testFile (deflated 70%)
+====================================================
+Test audio compression
+====================================================
+LZ77 Output file: 4668620 bytes (99.5%)
+  adding: test/test_audio/audio1.mp3 (deflated 1%)
+====================================================
+====================================================
+Test image compression
+====================================================
+LZ77 Output file: 326891 bytes (93.3%)
+  adding: test/test_img/SS1.png (deflated 7%)
+LZ77 Output file: 4255 bytes (8.4%)
+  adding: test/test_img/SS2.png (deflated 91%)
+LZ77 Output file: 2336180 bytes (100.1%)
+  adding: test/test_img/DL1.png (deflated 0%)
+LZ77 Output file: 374777 bytes (97.7%)
+  adding: test/test_img/DL2.png (deflated 4%)
+====================================================
+Test random data compression
+====================================================
+LZ77 Output file: 1052488 bytes (100.4%)
+  adding: test/test_bin/random (deflated 0%)
+====================================================
+==========================================================
+Copy the code to remote
+==========================================================
+users-MacBook-Pro:bcl user$ ./build.sh
+gcc -c -Wall -w -O3 -s bfc.c
+gcc -c -Wall -W -ansi -pedantic -O3 rle.c
+gcc -c -Wall -W -ansi -pedantic -O3 shannonfano.c
+gcc -c -Wall -W -ansi -pedantic -O3 huffman.c
+gcc -c -Wall -W -ansi -pedantic -O3 rice.c
+gcc -c -Wall -W -ansi -pedantic -O3 lz.c
+ar -rcs libbcl.a rle.o shannonfano.o huffman.o rice.o lz.o
+gcc -s bfc.o libbcl.a -o bfc
+ld: warning: option -s is obsolete and being ignored
+====================================================
+Make completed
+====================================================
+/Users/user/workspace/bcl/src
+-rwxr-xr-x  1 user  staff    30K Feb 21 15:12 bfc
+-rw-r--r--  1 user  staff   6.0K Feb 21 15:12 bfc.o
+-rw-r--r--  1 user  staff   3.3K Feb 21 15:12 huffman.o
+-rw-r--r--  1 user  staff    24K Feb 21 15:12 libbcl.a
+-rw-r--r--  1 user  staff   8.7K Feb 21 15:12 lz.o
+-rw-r--r--  1 user  staff   4.3K Feb 21 15:12 rice.o
+-rw-r--r--  1 user  staff   3.1K Feb 21 15:12 rle.o
+-rw-r--r--  1 user  staff   3.4K Feb 21 15:12 shannonfano.o
+====================================================
+Test txt compression
+====================================================
+LZ77 Output file: 4092 bytes (48.3%)
+  adding: test/test_txt/testFile (deflated 70%)
+====================================================
+Test audio compression
+====================================================
+LZ77 Output file: 4668620 bytes (99.5%)
+  adding: test/test_audio/audio1.mp3 (deflated 1%)
+====================================================
+====================================================
+Test image compression
+====================================================
+LZ77 Output file: 326891 bytes (93.3%)
+  adding: test/test_img/SS1.png (deflated 7%)
+LZ77 Output file: 4255 bytes (8.4%)
+  adding: test/test_img/SS2.png (deflated 91%)
+LZ77 Output file: 2336180 bytes (100.1%)
+  adding: test/test_img/DL1.png (deflated 0%)
+LZ77 Output file: 374777 bytes (97.7%)
+  adding: test/test_img/DL2.png (deflated 4%)
+====================================================
+Test random data compression
+====================================================
+LZ77 Output file: 1052488 bytes (100.4%)
+  adding: test/test_bin/random (deflated 0%)
+====================================================
+users-MacBook-Pro:bcl user$

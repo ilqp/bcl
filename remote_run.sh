@@ -1,7 +1,7 @@
 export REMOTE_SERVER="192.168.118.131"
 export REMOTE_WORKSPACE="/home/user/workspace"
 export LOCAL_WORKSPACE="/Users/user/workspace"
-export PROJECT_NAME="bcl-1.2.0"
+export PROJECT_NAME="bcl"
 
 function runInRemote() {
 	remote_file_name=$(basename "$1")
@@ -27,7 +27,7 @@ scp -r $LOCAL_WORKSPACE/$PROJECT_NAME $REMOTE_SERVER:$REMOTE_WORKSPACE/$PROJECT_
 message "Build the remote code"
 cat > /tmp/remove.tmp << "EOF"
 export REMOTE_WORKSPACE="/home/user/workspace"
-export PROJECT_NAME="bcl-1.2.0"
+export PROJECT_NAME="bcl"
 
 cd $REMOTE_WORKSPACE/$PROJECT_NAME
 pwd

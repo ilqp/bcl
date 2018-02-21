@@ -199,6 +199,7 @@ int main( int argc, char **argv )
     }
 
     /* Print operation... */
+    if(command == 'c')
     switch( algo )
     {
         case 1: printf( "RLE " ); break;
@@ -212,6 +213,7 @@ int main( int argc, char **argv )
         case 9: printf( "LZ77 " ); break;
         case 10: printf( "Shannon-Fano " ); break;
     }
+#if 0
     switch( command )
     {
         case 'c': printf( "compress " ); break;
@@ -221,6 +223,7 @@ int main( int argc, char **argv )
 
     /* Read input file */
     printf( "Input file: %d bytes\n", insize );
+#endif
     in = (unsigned char *) malloc( insize );
     if( !in )
     {
@@ -231,12 +234,13 @@ int main( int argc, char **argv )
     fread( in, insize, 1, f );
     fclose( f );
 
+#if 0
     /* Show output file size for decompression */
     if( command == 'd' )
     {
         printf( "Output file: %d bytes\n", outsize );
     }
-
+#endif
 
     /* Open output file */
     f = fopen( outname, "wb" );
